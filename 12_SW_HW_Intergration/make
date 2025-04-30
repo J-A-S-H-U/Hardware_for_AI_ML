@@ -1,0 +1,7 @@
+TOPLEVEL_LANG = verilog
+VERILOG_SOURCES = $(PWD)/hardware.sv
+TOPLEVEL = q_update
+MODULE = test_q_update
+
+SIM = icarus
+include $(shell cocotb-config --makefiles)/Makefile.sim
