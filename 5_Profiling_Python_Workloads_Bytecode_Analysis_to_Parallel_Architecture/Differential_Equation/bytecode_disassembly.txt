@@ -1,0 +1,328 @@
+  0           0 RESUME                   0
+
+  1           2 LOAD_CONST               0 (0)
+              4 LOAD_CONST               1 (None)
+              6 IMPORT_NAME              0 (numpy)
+              8 STORE_NAME               1 (np)
+
+  3          10 LOAD_CONST               2 (<code object euler at 0x000001A5BB310FB0, file "differential_eqution.py", line 3>)
+             12 MAKE_FUNCTION            0
+             14 STORE_NAME               2 (euler)
+
+ 34          16 LOAD_CONST               3 (<code object rk4 at 0x000001A5BB505340, file "differential_eqution.py", line 34>)
+             18 MAKE_FUNCTION            0
+             20 STORE_NAME               3 (rk4)
+
+ 54          22 LOAD_NAME                4 (__name__)
+             24 LOAD_CONST               4 ('__main__')
+             26 COMPARE_OP              40 (==)
+             30 POP_JUMP_IF_FALSE      110 (to 252)
+
+ 56          32 LOAD_CONST               5 (<code object f at 0x000001A5BB605FE0, file "differential_eqution.py", line 56>)
+             34 MAKE_FUNCTION            0
+             36 STORE_NAME               5 (f)
+
+ 59          38 LOAD_CONST               6 (1.0)
+             40 STORE_NAME               6 (y0)
+
+ 60          42 LOAD_CONST               7 ((0.0, 5.0, 0.01))
+             44 UNPACK_SEQUENCE          3
+             48 STORE_NAME               7 (t0)
+             50 STORE_NAME               8 (tf)
+             52 STORE_NAME               9 (dt)
+
+ 62          54 PUSH_NULL
+             56 LOAD_NAME                2 (euler)
+             58 LOAD_NAME                5 (f)
+             60 LOAD_NAME                6 (y0)
+             62 LOAD_NAME                7 (t0)
+             64 LOAD_NAME                8 (tf)
+             66 LOAD_NAME                9 (dt)
+             68 CALL                     5
+             76 UNPACK_SEQUENCE          2
+             80 STORE_NAME              10 (t_eu)
+             82 STORE_NAME              11 (y_eu)
+
+ 63          84 PUSH_NULL
+             86 LOAD_NAME                3 (rk4)
+             88 LOAD_NAME                5 (f)
+             90 LOAD_NAME                6 (y0)
+             92 LOAD_NAME                7 (t0)
+             94 LOAD_NAME                8 (tf)
+             96 LOAD_NAME                9 (dt)
+             98 CALL                     5
+            106 UNPACK_SEQUENCE          2
+            110 STORE_NAME              12 (t_rk)
+            112 STORE_NAME              13 (y_rk)
+
+ 66         114 PUSH_NULL
+            116 LOAD_NAME               14 (print)
+            118 LOAD_CONST               8 ('Euler   y(')
+            120 LOAD_NAME                8 (tf)
+            122 FORMAT_VALUE             0
+            124 LOAD_CONST               9 (') = ')
+            126 LOAD_NAME               11 (y_eu)
+            128 LOAD_CONST              10 (-1)
+            130 BINARY_SUBSCR
+            134 LOAD_CONST              11 ('.5f')
+            136 FORMAT_VALUE             4 (with format)
+            138 BUILD_STRING             4
+            140 CALL                     1
+            148 POP_TOP
+
+ 67         150 PUSH_NULL
+            152 LOAD_NAME               14 (print)
+            154 LOAD_CONST              12 ('RK4     y(')
+            156 LOAD_NAME                8 (tf)
+            158 FORMAT_VALUE             0
+            160 LOAD_CONST               9 (') = ')
+            162 LOAD_NAME               13 (y_rk)
+            164 LOAD_CONST              10 (-1)
+            166 BINARY_SUBSCR
+            170 LOAD_CONST              11 ('.5f')
+            172 FORMAT_VALUE             4 (with format)
+            174 BUILD_STRING             4
+            176 CALL                     1
+            184 POP_TOP
+
+ 68         186 PUSH_NULL
+            188 LOAD_NAME               14 (print)
+            190 LOAD_CONST              13 ('Exact   y(')
+            192 LOAD_NAME                8 (tf)
+            194 FORMAT_VALUE             0
+            196 LOAD_CONST               9 (') = ')
+            198 PUSH_NULL
+            200 LOAD_NAME                1 (np)
+            202 LOAD_ATTR               30 (exp)
+            222 LOAD_NAME                8 (tf)
+            224 UNARY_NEGATIVE
+            226 CALL                     1
+            234 LOAD_CONST              11 ('.5f')
+            236 FORMAT_VALUE             4 (with format)
+            238 BUILD_STRING             4
+            240 CALL                     1
+            248 POP_TOP
+            250 RETURN_CONST             1 (None)
+
+ 54     >>  252 RETURN_CONST             1 (None)
+
+Disassembly of <code object euler at 0x000001A5BB310FB0, file "differential_eqution.py", line 3>:
+  3           0 RESUME                   0
+
+ 27           2 LOAD_GLOBAL              1 (NULL + np)
+             12 LOAD_ATTR                2 (arange)
+             32 LOAD_FAST                2 (t0)
+             34 LOAD_FAST                3 (tf)
+             36 LOAD_FAST                4 (dt)
+             38 BINARY_OP                0 (+)
+             42 LOAD_FAST                4 (dt)
+             44 CALL                     3
+             52 STORE_FAST               5 (t)
+
+ 28          54 LOAD_GLOBAL              1 (NULL + np)
+             64 LOAD_ATTR                4 (zeros)
+             84 LOAD_GLOBAL              7 (NULL + len)
+             94 LOAD_FAST                5 (t)
+             96 CALL                     1
+            104 BUILD_TUPLE              1
+            106 LOAD_GLOBAL              1 (NULL + np)
+            116 LOAD_ATTR                8 (shape)
+            136 LOAD_FAST                1 (y0)
+            138 CALL                     1
+            146 BINARY_OP                0 (+)
+            150 CALL                     1
+            158 STORE_FAST               6 (y)
+
+ 29         160 LOAD_FAST                1 (y0)
+            162 LOAD_FAST                6 (y)
+            164 LOAD_CONST               1 (0)
+            166 STORE_SUBSCR
+
+ 30         170 LOAD_GLOBAL             11 (NULL + range)
+            180 LOAD_CONST               2 (1)
+            182 LOAD_GLOBAL              7 (NULL + len)
+            192 LOAD_FAST                5 (t)
+            194 CALL                     1
+            202 CALL                     2
+            210 GET_ITER
+        >>  212 FOR_ITER                38 (to 292)
+            216 STORE_FAST               7 (i)
+
+ 31         218 LOAD_FAST                6 (y)
+            220 LOAD_FAST                7 (i)
+            222 LOAD_CONST               2 (1)
+            224 BINARY_OP               10 (-)
+            228 BINARY_SUBSCR
+            232 LOAD_FAST                4 (dt)
+            234 PUSH_NULL
+            236 LOAD_FAST                0 (f)
+            238 LOAD_FAST                5 (t)
+            240 LOAD_FAST                7 (i)
+            242 LOAD_CONST               2 (1)
+            244 BINARY_OP               10 (-)
+            248 BINARY_SUBSCR
+            252 LOAD_FAST                6 (y)
+            254 LOAD_FAST                7 (i)
+            256 LOAD_CONST               2 (1)
+            258 BINARY_OP               10 (-)
+            262 BINARY_SUBSCR
+            266 CALL                     2
+            274 BINARY_OP                5 (*)
+            278 BINARY_OP                0 (+)
+            282 LOAD_FAST                6 (y)
+            284 LOAD_FAST                7 (i)
+            286 STORE_SUBSCR
+            290 JUMP_BACKWARD           40 (to 212)
+
+ 30     >>  292 END_FOR
+
+ 32         294 LOAD_FAST                5 (t)
+            296 LOAD_FAST                6 (y)
+            298 BUILD_TUPLE              2
+            300 RETURN_VALUE
+
+Disassembly of <code object rk4 at 0x000001A5BB505340, file "differential_eqution.py", line 34>:
+ 34           0 RESUME                   0
+
+ 40           2 LOAD_GLOBAL              1 (NULL + np)
+             12 LOAD_ATTR                2 (arange)
+             32 LOAD_FAST                2 (t0)
+             34 LOAD_FAST                3 (tf)
+             36 LOAD_FAST                4 (dt)
+             38 BINARY_OP                0 (+)
+             42 LOAD_FAST                4 (dt)
+             44 CALL                     3
+             52 STORE_FAST               5 (t)
+
+ 41          54 LOAD_GLOBAL              1 (NULL + np)
+             64 LOAD_ATTR                4 (zeros)
+             84 LOAD_GLOBAL              7 (NULL + len)
+             94 LOAD_FAST                5 (t)
+             96 CALL                     1
+            104 BUILD_TUPLE              1
+            106 LOAD_GLOBAL              1 (NULL + np)
+            116 LOAD_ATTR                8 (shape)
+            136 LOAD_FAST                1 (y0)
+            138 CALL                     1
+            146 BINARY_OP                0 (+)
+            150 CALL                     1
+            158 STORE_FAST               6 (y)
+
+ 42         160 LOAD_FAST                1 (y0)
+            162 LOAD_FAST                6 (y)
+            164 LOAD_CONST               1 (0)
+            166 STORE_SUBSCR
+
+ 43         170 LOAD_GLOBAL             11 (NULL + range)
+            180 LOAD_CONST               2 (1)
+            182 LOAD_GLOBAL              7 (NULL + len)
+            192 LOAD_FAST                5 (t)
+            194 CALL                     1
+            202 CALL                     2
+            210 GET_ITER
+        >>  212 FOR_ITER               122 (to 460)
+            216 STORE_FAST               7 (i)
+
+ 44         218 LOAD_FAST                5 (t)
+            220 LOAD_FAST                7 (i)
+            222 LOAD_CONST               2 (1)
+            224 BINARY_OP               10 (-)
+            228 BINARY_SUBSCR
+            232 STORE_FAST               8 (ti)
+
+ 45         234 LOAD_FAST                6 (y)
+            236 LOAD_FAST                7 (i)
+            238 LOAD_CONST               2 (1)
+            240 BINARY_OP               10 (-)
+            244 BINARY_SUBSCR
+            248 STORE_FAST               9 (yi)
+
+ 46         250 PUSH_NULL
+            252 LOAD_FAST                0 (f)
+            254 LOAD_FAST                8 (ti)
+            256 LOAD_FAST                9 (yi)
+            258 CALL                     2
+            266 STORE_FAST              10 (k1)
+
+ 47         268 PUSH_NULL
+            270 LOAD_FAST                0 (f)
+            272 LOAD_FAST                8 (ti)
+            274 LOAD_FAST                4 (dt)
+            276 LOAD_CONST               3 (2)
+            278 BINARY_OP               11 (/)
+            282 BINARY_OP                0 (+)
+            286 LOAD_FAST                9 (yi)
+            288 LOAD_FAST                4 (dt)
+            290 LOAD_CONST               3 (2)
+            292 BINARY_OP               11 (/)
+            296 LOAD_FAST               10 (k1)
+            298 BINARY_OP                5 (*)
+            302 BINARY_OP                0 (+)
+            306 CALL                     2
+            314 STORE_FAST              11 (k2)
+
+ 48         316 PUSH_NULL
+            318 LOAD_FAST                0 (f)
+            320 LOAD_FAST                8 (ti)
+            322 LOAD_FAST                4 (dt)
+            324 LOAD_CONST               3 (2)
+            326 BINARY_OP               11 (/)
+            330 BINARY_OP                0 (+)
+            334 LOAD_FAST                9 (yi)
+            336 LOAD_FAST                4 (dt)
+            338 LOAD_CONST               3 (2)
+            340 BINARY_OP               11 (/)
+            344 LOAD_FAST               11 (k2)
+            346 BINARY_OP                5 (*)
+            350 BINARY_OP                0 (+)
+            354 CALL                     2
+            362 STORE_FAST              12 (k3)
+
+ 49         364 PUSH_NULL
+            366 LOAD_FAST                0 (f)
+            368 LOAD_FAST                8 (ti)
+            370 LOAD_FAST                4 (dt)
+            372 BINARY_OP                0 (+)
+            376 LOAD_FAST                9 (yi)
+            378 LOAD_FAST                4 (dt)
+            380 LOAD_FAST               12 (k3)
+            382 BINARY_OP                5 (*)
+            386 BINARY_OP                0 (+)
+            390 CALL                     2
+            398 STORE_FAST              13 (k4)
+
+ 50         400 LOAD_FAST                9 (yi)
+            402 LOAD_FAST                4 (dt)
+            404 LOAD_CONST               4 (6)
+            406 BINARY_OP               11 (/)
+            410 LOAD_FAST               10 (k1)
+            412 LOAD_CONST               3 (2)
+            414 LOAD_FAST               11 (k2)
+            416 BINARY_OP                5 (*)
+            420 BINARY_OP                0 (+)
+            424 LOAD_CONST               3 (2)
+            426 LOAD_FAST               12 (k3)
+            428 BINARY_OP                5 (*)
+            432 BINARY_OP                0 (+)
+            436 LOAD_FAST               13 (k4)
+            438 BINARY_OP                0 (+)
+            442 BINARY_OP                5 (*)
+            446 BINARY_OP                0 (+)
+            450 LOAD_FAST                6 (y)
+            452 LOAD_FAST                7 (i)
+            454 STORE_SUBSCR
+            458 JUMP_BACKWARD          124 (to 212)
+
+ 43     >>  460 END_FOR
+
+ 51         462 LOAD_FAST                5 (t)
+            464 LOAD_FAST                6 (y)
+            466 BUILD_TUPLE              2
+            468 RETURN_VALUE
+
+Disassembly of <code object f at 0x000001A5BB605FE0, file "differential_eqution.py", line 56>:
+ 56           0 RESUME                   0
+
+ 57           2 LOAD_FAST                1 (y)
+              4 UNARY_NEGATIVE
+              6 RETURN_VALUE
