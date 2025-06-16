@@ -1,0 +1,11 @@
+Design: q_update_core_pipelined
+
+Cell Count:
+  Total cells: 842
+  Combinational: 810
+  Sequential: 32
+
+Area (um²):
+  Total: 1245.67
+  Combinational: 1180.23
+  Sequential: 65.44

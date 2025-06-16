@@ -1,0 +1,15 @@
+    q_update_core_pipelined
+
+Number of wires:               1245
+Number of wire bits:           1245
+Number of public wires:        1245
+Number of public wire bits:    1245
+Number of memories:            0
+Number of memory bits:         0
+Number of processes:           0
+Number of cells:               842
+  \$_AND_                      156
+  \$_OR_                       210
+  \$_XOR_                      98
+  \$_DFF_P_                    32
+  \$_MUX_                      346
